@@ -7,12 +7,11 @@ import (
 	"github.com/derailed/k9s/internal/model"
 	"github.com/derailed/k9s/internal/ui"
 	"github.com/derailed/tcell/v2"
-	"github.com/derailed/tview"
 )
 
 // Logger represents a generic log viewer.
 type Logger struct {
-	*tview.TextView
+	*FastTextView
 
 	actions        ui.KeyActions
 	app            *App
@@ -23,10 +22,10 @@ type Logger struct {
 // NewLogger returns a logger viewer.
 func NewLogger(app *App) *Logger {
 	return &Logger{
-		TextView: tview.NewTextView(),
-		app:      app,
-		actions:  make(ui.KeyActions),
-		cmdBuff:  model.NewFishBuff('/', model.FilterBuffer),
+		FastTextView: NewFastTextView(),
+		app:          app,
+		actions:      make(ui.KeyActions),
+		cmdBuff:      model.NewFishBuff('/', model.FilterBuffer),
 	}
 }
 
